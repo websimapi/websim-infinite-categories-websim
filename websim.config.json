@@ -1,0 +1,34 @@
+{
+  "database": {
+    "schema": {
+      "project_categories": {
+        "id": {
+          "type": "uuid",
+          "description": "Unique identifier for the category assignment"
+        },
+        "project_id": {
+          "type": "text",
+          "description": "The WebSim project ID being categorized"
+        },
+        "category_name": {
+          "type": "text",
+          "description": "Name of the category (e.g., 'Games', 'Tools', 'Art')"
+        },
+        "site_id": {
+          "type": "text",
+          "description": "The WebSim site ID if available"
+        },
+        "created_by_user": {
+          "type": "text",
+          "description": "Username of the person who created this categorization"
+        },
+        "created_at": {
+          "type": "timestamptz",
+          "description": "When this categorization was created"
+        }
+      }
+    },
+    "instructions": "This database stores custom categorizations for WebSim projects. Users can assign multiple categories to any project, and the system auto-generates suggested categories based on project content. The infinite categories system allows for dynamic category creation and organization of the entire WebSim ecosystem."
+  }
+}
+
