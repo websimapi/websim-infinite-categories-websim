@@ -484,14 +484,11 @@ function App() {
   const [showModal, setShowModal] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
   const [selectedSite, setSelectedSite] = useState(null);
-  const { data: feedData, loading: feedLoading } = useQuery(
-    room.query(`SELECT * FROM trending_feed LIMIT 50`)
-  );
   const { data: projectCategories, loading: categoriesLoading } = useQuery(
     room.collection("project_categories")
   );
   const organizeProjectsByCategory = useCallback(async () => {
-    if (feedLoading || categoriesLoading) return;
+    if (categoriesLoading) return;
     try {
       const response = await fetch("/api/v1/feed/trending?limit=100");
       const trendingData = await response.json();
@@ -530,7 +527,7 @@ function App() {
       console.error("Error organizing projects:", error);
       setLoading(false);
     }
-  }, [feedLoading, categoriesLoading, projectCategories]);
+  }, [categoriesLoading, projectCategories]);
   const autoGenerateCategories = async (projects, existingCategories) => {
     const autoCategories = {
       "Games": ["game", "play", "player", "score", "level", "arcade"],
@@ -577,11 +574,11 @@ function App() {
   if (loading) {
     return /* @__PURE__ */ jsxDEV("div", { className: "container mx-auto px-4 py-8", children: /* @__PURE__ */ jsxDEV(LoadingSkeleton, {}, void 0, false, {
       fileName: "<stdin>",
-      lineNumber: 387,
+      lineNumber: 382,
       columnNumber: 17
     }, this) }, void 0, false, {
       fileName: "<stdin>",
-      lineNumber: 386,
+      lineNumber: 381,
       columnNumber: 13
     }, this);
   }
@@ -590,7 +587,7 @@ function App() {
       /* @__PURE__ */ jsxDEV("div", { className: "flex items-center justify-between mb-6", children: [
         /* @__PURE__ */ jsxDEV("h1", { className: "text-3xl font-bold gradient-text", children: "Infinite Categories" }, void 0, false, {
           fileName: "<stdin>",
-          lineNumber: 398,
+          lineNumber: 393,
           columnNumber: 25
         }, this),
         /* @__PURE__ */ jsxDEV("div", { className: "text-sm text-gray-400", children: [
@@ -600,12 +597,12 @@ function App() {
           " projects"
         ] }, void 0, true, {
           fileName: "<stdin>",
-          lineNumber: 399,
+          lineNumber: 394,
           columnNumber: 25
         }, this)
       ] }, void 0, true, {
         fileName: "<stdin>",
-        lineNumber: 397,
+        lineNumber: 392,
         columnNumber: 21
       }, this),
       /* @__PURE__ */ jsxDEV("div", { className: "flex flex-wrap gap-2 overflow-x-auto pb-2", children: categoryNames.map((category) => /* @__PURE__ */ jsxDEV(
@@ -624,22 +621,22 @@ function App() {
         true,
         {
           fileName: "<stdin>",
-          lineNumber: 407,
+          lineNumber: 402,
           columnNumber: 29
         },
         this
       )) }, void 0, false, {
         fileName: "<stdin>",
-        lineNumber: 405,
+        lineNumber: 400,
         columnNumber: 21
       }, this)
     ] }, void 0, true, {
       fileName: "<stdin>",
-      lineNumber: 396,
+      lineNumber: 391,
       columnNumber: 17
     }, this) }, void 0, false, {
       fileName: "<stdin>",
-      lineNumber: 395,
+      lineNumber: 390,
       columnNumber: 13
     }, this),
     /* @__PURE__ */ jsxDEV("main", { className: "container mx-auto px-4 pb-12", children: [
@@ -656,13 +653,13 @@ function App() {
           false,
           {
             fileName: "<stdin>",
-            lineNumber: 427,
+            lineNumber: 422,
             columnNumber: 29
           },
           this
         )) }, void 0, false, {
           fileName: "<stdin>",
-          lineNumber: 425,
+          lineNumber: 420,
           columnNumber: 21
         }, this)
       ) : (
@@ -678,7 +675,7 @@ function App() {
           false,
           {
             fileName: "<stdin>",
-            lineNumber: 437,
+            lineNumber: 432,
             columnNumber: 21
           },
           this
@@ -687,27 +684,27 @@ function App() {
       categories[selectedCategory]?.length === 0 && /* @__PURE__ */ jsxDEV("div", { className: "text-center py-12", children: [
         /* @__PURE__ */ jsxDEV("div", { className: "text-6xl mb-4", children: "\u{1F4C2}" }, void 0, false, {
           fileName: "<stdin>",
-          lineNumber: 446,
+          lineNumber: 441,
           columnNumber: 25
         }, this),
         /* @__PURE__ */ jsxDEV("h3", { className: "text-xl font-semibold mb-2", children: "No projects in this category yet" }, void 0, false, {
           fileName: "<stdin>",
-          lineNumber: 447,
+          lineNumber: 442,
           columnNumber: 25
         }, this),
         /* @__PURE__ */ jsxDEV("p", { className: "text-gray-400", children: "Start categorizing projects to see them here!" }, void 0, false, {
           fileName: "<stdin>",
-          lineNumber: 448,
+          lineNumber: 443,
           columnNumber: 25
         }, this)
       ] }, void 0, true, {
         fileName: "<stdin>",
-        lineNumber: 445,
+        lineNumber: 440,
         columnNumber: 21
       }, this)
     ] }, void 0, true, {
       fileName: "<stdin>",
-      lineNumber: 422,
+      lineNumber: 417,
       columnNumber: 13
     }, this),
     showModal && selectedProject && /* @__PURE__ */ jsxDEV(
@@ -722,20 +719,20 @@ function App() {
       false,
       {
         fileName: "<stdin>",
-        lineNumber: 455,
+        lineNumber: 450,
         columnNumber: 17
       },
       this
     )
   ] }, void 0, true, {
     fileName: "<stdin>",
-    lineNumber: 393,
+    lineNumber: 388,
     columnNumber: 9
   }, this);
 }
 const root = createRoot(document.getElementById("root"));
 root.render(/* @__PURE__ */ jsxDEV(App, {}, void 0, false, {
   fileName: "<stdin>",
-  lineNumber: 467,
+  lineNumber: 462,
   columnNumber: 13
 }));
